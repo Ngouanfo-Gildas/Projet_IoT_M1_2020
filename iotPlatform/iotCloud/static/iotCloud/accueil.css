@@ -1,0 +1,123 @@
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+body{
+	font-family: monospace, calibri, serif;
+	margin:0px;
+	padding:0px;
+}
+/*on utilise > pour cibler les enfants directs de nav*/
+nav > ul{
+	margin: 0px;
+	padding: 0px;
+}
+/*on qffiche seulement les element li correspondants a nos onglets de menu*/
+nav > ul > li{
+	float: left;
+	position:relative;	
+	padding: 0 ;
+}
+/*on enleve les puces devant nos elements li de notre nav*/
+nav li{
+	list-style-type: none;
+}
+
+.submenu{
+	display: none;
+}
+nav{
+	width: 100%;
+	background-color: #1d9ab9fa;
+}
+nav > ul::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+nav a{
+	display: inline-block;
+	text-decoration: none;
+}
+nav > ul > li > a{
+	padding:20px 30px;
+	color:#FFF;
+}
+nav li:hover .submenu{
+	display: inline-block;
+	position: absolute;
+	top: 100%;
+	right: 0px;
+	padding: 0px;
+	z-index:100000;
+}
+nav div div li:hover .submenu{
+	display: inline-block;
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	padding: 0px;
+	z-index:100000;
+}
+.submenu li{
+	border-bottom: 1px solid #CCC;
+}
+.submenu li a{
+	padding: 15px;
+	font-size: 17px;
+	color: #222538;
+	width: 200px;
+	right: 2px;
+}
+.menu:hover{
+	border-top: 3px solid darkslateblue;
+    background-color: RGBa(98, 177, 3, 0.2);
+}
+
+.menu:hover a{
+    color: black;
+}
+
+nav > ul > li:hover a{
+	padding: 15px 30px 20px 30px;
+}
+
+nav{
+    margin-bottom: 1px;
+}
+
+.menu-con .submenu{
+    background-color: #1d9ab9fa;
+    
+}
+.submenu li:hover a{
+	color:rgb(92, 177, 151);
+	font-weight: bold;
+}
+
+.menu-con .submenu li:hover{
+	background-color: #CCC;
+}
+
+.menu-con {
+	color: black;
+	float: right;
+}
+
+/*
+ footer
+*/
+
+div ul li a{
+    color:rgb(0, 0, 0);
+}
+li {
+    list-style-type: none;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 400px) {
+ 
+}

@@ -1,0 +1,28 @@
+ {% extends 'gestionIoT/accueil.html' %}
+
+ {% block content %}
+    passer à la vitesse supérieur avec IoT ma
+
+ {% endblock %}
+
+
+{% block detail_capteur %}
+
+<table class="table table-bordered table-hover">
+    <thead class="bg-info">
+      <tr>
+        <!--th>Id</th-->
+        <th>#</th>
+        <th>Nom capteur</th>
+        <th>Date</th>
+        <th>heure</th>
+        {% for i in capteurs %}
+        <th></th>
+        <th>Modifier</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for netw in reseaux %}
+        <tr>
+
+{% endblock %}

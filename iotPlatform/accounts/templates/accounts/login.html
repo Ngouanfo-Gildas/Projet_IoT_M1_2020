@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Connexion
+{% endblock title %}
+
+{% block content %}
+  <form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+
+    <!--div class="row">
+      <div class="col-12">{{ form.username|as_crispy_field }}</div>
+      <div class="col-12">{{ form.password|as_crispy_field }}</div>
+    </div-->
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="inputun4">Nom d'utilisateur:</label>
+        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="inputpw4">Mot de passe:</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+  </form>
+{% endblock content %}
+
+{% block cfooter %}
+  <h6 class="m-auto text-center"> <a href="{% url 'password_reset' %}">mot de passe oublié </a> </h6>
+  <h6 class="m-auto text-center"> <a href="{% url 'register' %}">  Je n'ai pas de compte   </a> </h6>
+{% endblock cfooter %}
+

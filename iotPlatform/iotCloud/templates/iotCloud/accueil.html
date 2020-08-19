@@ -1,0 +1,151 @@
+{% load static %}
+
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <title>accueil</title>
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+
+
+   <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{% static 'iotCloud/accueil.css' %}">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav>
+		<ul>
+        <li><img src="{% static 'iotCloud/logo.png' %}" alt="logo"></li>
+			<li class="menu">
+                <a href="accueil"> 
+                    <i class="fas fa-home"></i> Accueil
+                </a>
+			</li>
+			
+			<li class="menu">
+                <a href="{% url 'reseau_list' %}">
+                    <i class="fas fa-network-wired"></i> Mes réseaux
+                </a>
+				<!--ul class="submenu">
+					<li><a href="#">exemples / exercices</a></li>
+				</ul-->
+			</li>
+			
+			<li class="menu">
+                <a href="mon_profil">
+                    <i class="fas fa-id-card"></i> Profil </a>
+				<!--ul class="submenu">
+					<li><a href="#">cours complet html et css</a></li>
+				</ul-->
+			</li>
+			
+			<li class="menu">
+                <a href="#"><i class="fas fa-cog"></i>
+                    Paramètres
+                </a>
+            </li>
+            <li class="menu-con">
+                {% if user.is_authenticated %}
+                    <a href="#">
+                        bienvenu <u>{{ user.username }}</u>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="../accounts/logout">Se déconnecter</a></li>
+                            <li><a href="../accounts/password_change">Changer le mot de passe</a></li>
+                        </ul>
+                {% else %}
+                    <a href="#">
+                        Connexion
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="../accounts/login">Se connecter</a></li>
+                            <li><a href="../accounts/register">Créer un compte</a></li>
+                        </ul>
+                {% endif %}
+            </li>
+		</ul>
+    </nav>
+    <div class="jumbotron">
+        <div class="container">
+            <!--div class="row justify-content-center"-->
+                <div class="text-info">
+                    <h4>
+                        {% block page_title %}
+                        {% endblock %}
+                    </h4>
+                </div>
+                    {% block content %}
+                    passer à la vitesse supérieur avec IoT ma
+                    {% endblock %}
+            <!--/div-->
+        </div>
+    </div>
+
+    {% block pied_page %}
+	    <div class="footer">
+            <footer class="text-monospace" style="bottom: 0; position: relative; width: 100%;">
+                <hr class="mt-0 bg-info" width="100%">
+                <div class="row m-0 p-3 text-light bg-info">
+                    <div class="col-8">
+                        <h5> Informations</h5>
+                        <hr class="mt-1 bg-light ml-0" width="90%">
+                        <ul>
+                            <li class="i"> <a href="">Conditions générales d'utilisation </a></li>  
+                            <li class="i"> <a href="">Comment uttiliser l'application?</a></li>
+                            <li class="i"> <a href="">A propos nous</a></li>  
+                            <li class="i"> <a href="">Contactez-nous</a></li>                  
+                        </ul>
+                    </div>
+                    <div class="col-4">
+                        <h5> Langues</h5>
+                        <hr class="mt-1 bg-light ml-0" width="90%">
+                        toto
+                    </div>
+                </div>
+                <div class="bg-dark text-center p-2 text-info">
+                    copyright 2020 - tout droits reservés
+                </div>
+            </footer>    
+        </div>
+    {% endblock %}
+     
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script-->
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>

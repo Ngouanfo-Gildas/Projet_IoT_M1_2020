@@ -1,0 +1,25 @@
+{% extends "gestionIoT/accueil.html" %}
+
+{% load crispy_forms_tags %}
+
+
+{% block page_title %}
+<b> Créer un nouveau réseau</b>
+<hr class="mt-2 mb-4">
+{% endblock %}
+
+{% block content %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="row">
+     
+      <div class="col-12">
+        {{ form.nom_reseau|as_crispy_field }}
+      </div>
+      <div class="col-12">
+        {{ form.description_reseau|as_crispy_field }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">Sauvegarder</button>
+  </form>
+{% endblock %}
