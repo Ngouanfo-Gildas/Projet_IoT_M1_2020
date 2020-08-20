@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 
-from django.contrib.auth import authenticate , logout
+from django.contrib.auth import authenticate , logout, login
 
 def registration_view(request):
     save = False
@@ -36,31 +36,30 @@ def registration_view(request):
     return render(request, 'accounts/register.html', {'form':form, 'form1':form1})
 
 
-"""def registration_view(request):
-	context = {}
-	if request.POST:
-		form = RegistrationForm(request.POST)
-		if form.is_valid():
-			form.save()
-			email = form.cleaned_data.get('email')
-			raw_password = form.cleaned_data.get('password1')
-			account = authenticate(email=email, password=raw_password)
-			login(request, account)
-			return redirect('home')
-		else:
-			context['registration_form'] = form
-
-	else:
-		form = RegistrationForm()
-		context['registration_form'] = form
-	return render(request, 'accounts/register.html', context)
-
-"""
 class LoginUser(LoginView):
     model = User
     fields = ['username', 'password']
     template_name = "accounts/login.html"
 
+def login_view(request):
+	error = False
+	user = request.user
+	if user.is_authenticated: 
+		return redirect("home")
+	if request.method == "POST":
+		form = ConnexionForm(request.POST)
+		if form.is_valid():
+			username = form.cleaned_data["username"] # on récupère le nom d'utilisateur
+			password = form.cleaned_data["password"] # .. et le mot de passe
+			user = authenticate(username=username, password=password) # on vérifie si les données sont ok
+			if user: # si l'objet renvoyé n'est pas None
+				login(request, user) # on connecte l'utilisateur
+				return redirect("home")
+			else: # sinon on affiche une erreur
+				error = True
+		else:
+			form = ConnexionForm()
+	return render(request, "accounts/login.html", locals())
 
 def logout_view(request):
 	logout(request)
@@ -75,28 +74,6 @@ def mon_profil(request):
         proprietaire = Proprietaire.objects.filter(user_id = request.user.id)
         #print(proprietaire.telephone_proprio)
     return render(request, 'gestionIoT/votre_profil.html', {"reseaux": reseaux, "proprietaire": proprietaire})
-
-def login_view_(request):
-	context = {}
-	user = request.user
-	if user.is_authenticated: 
-		return redirect("home")
-
-	if request.POST:
-		form = AccountAuthenticationForm(request.POST)
-		if form.is_valid():
-			email = request.POST['email']
-			password = request.POST['password']
-			user = authenticate(email=email, password=password)
-
-			if user:
-				login(request, user)
-				return redirect("home")
-	else:
-		form = AccountAuthenticationForm()
-	context['login_form'] = form
-
-	return render(request, "accounts/login.html", context)
 
 
 def account_view(request):

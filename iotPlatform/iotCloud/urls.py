@@ -12,5 +12,5 @@ urlpatterns = [
     path('accueil', views.home, name='accueil'),
     path('nouveau_reseau', views.nouveau_reseau, name='nouveau_reseau'),
     path('mes_reseau', views.liste_reseau, name='reseau_list'),
-
+    path('mon_profil', views.mon_profil),
 ] 

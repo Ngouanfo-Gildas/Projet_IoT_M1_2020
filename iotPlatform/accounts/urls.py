@@ -10,14 +10,14 @@ from . import views
 from accounts.views import ( 
     registration_view,
     logout_view,
-    #login_view,
+    login_view,
     account_view,
 	must_authenticate_view,
 )
 
 urlpatterns = [
-    #path('login/', login_view, name="login"),
-    path('login', views.LoginUser.as_view(), name='login'),
+    path('login/', login_view, name="login"),
+    #path('login', views.LoginUser.as_view(), name='login'),
     path('logout/', logout_view, name="logout"),
 	path('must_authenticate/', must_authenticate_view, name="must_authenticate"),
     path('register/', registration_view, name="register"),

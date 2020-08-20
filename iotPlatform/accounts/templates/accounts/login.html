@@ -7,15 +7,13 @@
 {% endblock title %}
 
 {% block content %}
-  <form method="POST" action="{% url 'home' %}">
+  <form method="POST" action="{% url 'login' %}">
     {% csrf_token %}
 
-    <!--div class="row">
-      <div class="col-12">{{ form.username|as_crispy_field }}</div>
-      <div class="col-12">{{ form.password|as_crispy_field }}</div>
-    </div-->
-
-    <div class="form-row">
+    {% if error %}
+      <p><strong>Utilisateur inexistant ou mauvais de mot de passe.</strong></p>
+    {% endif %}
+      <div class="form-row">
       <div class="form-group col-md-12">
         <label for="inputun4">Nom d'utilisateur:</label>
         <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
@@ -33,4 +31,7 @@
   <h6 class="m-auto text-center"> <a href="{% url 'password_reset' %}">mot de passe oublié </a> </h6>
   <h6 class="m-auto text-center"> <a href="{% url 'register' %}">  Je n'ai pas de compte   </a> </h6>
 {% endblock cfooter %}
+
+</body>
+</html>
 

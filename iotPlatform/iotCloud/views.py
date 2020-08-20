@@ -43,7 +43,7 @@ def nouveau_reseau(request):
             reseau.save()
             save = True
             return redirect('reseau_list')
-    return render(request, 'gestionIoT/nouveau_reseau.html', {'form':form })
+    return render(request, 'iotCloud/nouveau_reseau.html', {'form':form })
 
 @login_required(redirect_field_name='accounts/login')
 def liste_reseau(request):
