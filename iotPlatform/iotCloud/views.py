@@ -2,19 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import *
 from .models import *
-
-from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-
-from django.contrib.auth import authenticate , logout
+from django.contrib.auth import authenticate
 
 ############################################################################################
 ##########            gestion des réseaux; capteurs et des données                ##########
 #############----------------------------------------------------------------###############
-
 
 def home(request):
     return render(request, 'iotCloud/accueil.html', locals())

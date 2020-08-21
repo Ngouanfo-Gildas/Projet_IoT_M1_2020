@@ -42,9 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'accounts',
+    'iotCloud',
+    'APIiotCloud.apps.ApiiotcloudConfig',
     'rest_framework',
     'rest_framework.authtoken',
-    'iotCloud.apps.IotcloudConfig',
     'crispy_forms',
 ]
 

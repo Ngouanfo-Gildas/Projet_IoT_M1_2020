@@ -11,7 +11,7 @@
     {% csrf_token %}
 
     {% if error %}
-      <p><strong>Utilisateur inexistant ou mauvais de mot de passe.</strong></p>
+      <p class="text-danger text-center"><strong>Utilisateur inexistant ou mauvais de mot de passe.</strong></p>
     {% endif %}
       <div class="form-row">
       <div class="form-group col-md-12">
@@ -32,6 +32,4 @@
   <h6 class="m-auto text-center"> <a href="{% url 'register' %}">  Je n'ai pas de compte   </a> </h6>
 {% endblock cfooter %}
 
-</body>
-</html>
 

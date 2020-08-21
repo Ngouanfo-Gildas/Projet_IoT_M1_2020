@@ -9,12 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
-
 
    <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{% static 'iotCloud/accueil.css' %}">
@@ -79,47 +77,19 @@
     </nav>
     <div class="jumbotron">
         <div class="container">
-            <!--div class="row justify-content-center"-->
-                <div class="text-info">
-                    <h4>
-                        {% block page_title %}
-                        {% endblock %}
-                    </h4>
-                </div>
-                    {% block content %}
-                    passer à la vitesse supérieur avec IoT ma
+            <div class="text-info">
+                <h4>
+                    {% block page_title %}
                     {% endblock %}
-            <!--/div-->
+                </h4>
+            </div>
+            {% block content %}
+            passer à la vitesse supérieur avec l'Internet des Objets
+            {% endblock %}
         </div>
     </div>
 
-    {% block pied_page %}
-	    <div class="footer">
-            <footer class="text-monospace" style="bottom: 0; position: relative; width: 100%;">
-                <hr class="mt-0 bg-info" width="100%">
-                <div class="row m-0 p-3 text-light bg-info">
-                    <div class="col-8">
-                        <h5> Informations</h5>
-                        <hr class="mt-1 bg-light ml-0" width="90%">
-                        <ul>
-                            <li class="i"> <a href="">Conditions générales d'utilisation </a></li>  
-                            <li class="i"> <a href="">Comment uttiliser l'application?</a></li>
-                            <li class="i"> <a href="">A propos nous</a></li>  
-                            <li class="i"> <a href="">Contactez-nous</a></li>                  
-                        </ul>
-                    </div>
-                    <div class="col-4">
-                        <h5> Langues</h5>
-                        <hr class="mt-1 bg-light ml-0" width="90%">
-                        toto
-                    </div>
-                </div>
-                <div class="bg-dark text-center p-2 text-info">
-                    copyright 2020 - tout droits reservés
-                </div>
-            </footer>    
-        </div>
-    {% endblock %}
+    {% include './footer.html' %}
      
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">

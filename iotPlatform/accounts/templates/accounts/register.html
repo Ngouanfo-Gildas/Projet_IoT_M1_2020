@@ -5,6 +5,7 @@
 	Register an account
 {% endblock title %}
 
+
 {% block content %}
 
   {% for field in registration_form %}
@@ -69,6 +70,7 @@
 
 {% endblock content %}
 
-
-
+{% block cfooter %}
+<h6 class="m-auto text-center text-info"> <a href="{% url 'login' %}">J'ai déjà un compte!</a> </h6>
+{% endblock cfooter %}
 
