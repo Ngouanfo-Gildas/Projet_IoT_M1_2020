@@ -73,3 +73,16 @@ def delete_reseau(request):
     pass
 
 
+
+#pour le footer
+def contact(request):
+    return render(request, 'iotCloud/contact.html')
+
+def conditions(request):
+    return render(request, 'iotCloud/conditions.html')
+def a_propos(request):
+    return render(request, 'iotCloud/a_propos.html')
+def aide(request):
+    return render(request, 'iotCloud/aide.html')
+def abonnement(request):
+    return render(request, 'iotCloud/abonnement.html')
