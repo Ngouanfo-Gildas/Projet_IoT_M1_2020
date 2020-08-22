@@ -25,8 +25,7 @@ SECRET_KEY = 'ibx(d3h7-mr=@*3^s^&8%4ue3+#&)e5gtjs3prfbw))z#!(!@z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['192.168.43.208', 'localhost', '127.0.0.1', '0.0.0.0']
 
 if DEBUG: # en developpement
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
