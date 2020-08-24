@@ -6,6 +6,7 @@
     <thead class="bg-info">
       <tr>
         <th>Nom (nb de puits)</th>
+        <th>Clé du réseau</th>
         <th>Date de création</th>
         <th>Description</th>
         <th>nb capteur</th>
@@ -19,6 +20,10 @@
           <td>
             {{ netw.nom_reseau }} 
             ({{ nb }} <a href="#" class="tooltip-test" title="Ajouter un puits au réseau" data-toggle="modal" data-target="#exampleModalCenter__"> ++</a>)</td>
+            
+            <td>
+            {{ netw.network_key }} 
+            </td>
             <td>{{ netw.date_creation }}</td>
           <td><a href="#" data-toggle="tooltip" data-placement="top" title="{{ netw.description_reseau }}">
                 {% if netw.description_reseau|length > 25 %}

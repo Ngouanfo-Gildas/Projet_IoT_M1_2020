@@ -27,7 +27,8 @@ class Proprietaire(models.Model):
 
 class Reseau(models.Model):
     proprietaire = models.ForeignKey(Proprietaire, on_delete = models.CASCADE)
-    nom_reseau = models.CharField(max_length = 30)
+    nom_reseau = models.CharField(max_length = 30, unique=True)
+    network_key = models.CharField(max_length = 20, unique=True)
     date_creation = models.DateTimeField(default = timezone.now)
     description_reseau = models.TextField(max_length = 500)
 
@@ -41,8 +42,8 @@ class Reseau(models.Model):
 
 class Puits(models.Model):
     reseau = models.ForeignKey(Reseau, on_delete = models.CASCADE)
-    adresse = models.CharField(max_length=15)
-    cle = models.CharField(max_length=32)
+    adresse = models.CharField(max_length=15, unique=True)
+    sink_key = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
         return " %s du réseau %s" % (self.adresse, self.reseau)
@@ -52,7 +53,7 @@ class Puits(models.Model):
 class Capteur(models.Model):
     reseau = models.ForeignKey(Reseau, on_delete = models.CASCADE)
     nom_capteur = models.CharField(max_length = 30, unique=True)
-    adresse_capteur = models.CharField(max_length = 30)
+    adresse_capteur = models.CharField(max_length = 30,  unique=True)
     description_capteur = models.TextField(max_length = 150)
 
     def __str__(self):
@@ -95,12 +96,12 @@ class Souscription(models.Model):
 
 class Donnee_ctrl(models.Model):
     capteur = models.ForeignKey(Capteur, on_delete = models.CASCADE)
-    taux_livraison= models.FloatField()
-    qlte_signal = models.FloatField()
+    lq     = models.FloatField()
+    rssi   = models.FloatField()
+    voisin = models.TextField(max_length= 1000)
     date = models.DateTimeField(auto_now_add=True)
     heure = models.TimeField(auto_now_add=True)
-    voisin = models.TextField()
-    
+
     def __str__(self):
         return "%s" % (str(self.taux_livraison))
 
@@ -108,10 +109,12 @@ class Donnee_ctrl(models.Model):
 
 class Donnee_appli(models.Model):
     capteur = models.ForeignKey(Capteur, on_delete = models.CASCADE)
-    valeur_brute = models.IntegerField()
+    valeur_brute  = models.IntegerField()
     valeur_traite = models.FloatField()
-    date = models.DateField(auto_now_add=True)
-    heure = models.TimeField(auto_now_add=True)
+    type_data     = models.CharField(max_length=30)
+    unity_data    = models.CharField(max_length=10)
+    date          = models.DateField(auto_now_add=True)
+    heure         = models.TimeField(auto_now_add=True)
     
     def __str__(self):
         return "%s" % (str(self.valeur_traite))

@@ -19,6 +19,9 @@ router.register(r'state_sensor', views.PuitsViewSet)"""
 urlpatterns = [ 
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('addapp-data/', views.api_new_DAPP, name='api_new_DAPP'),
+    path('addctrl-data/', views.api_new_DCTRL, name='api_new_DCTRL'),
+    path('add-data/', views.add_data, name='add_data'),
     
     #path('docs/', include('rest_framework_swagger.urls')),
 ]

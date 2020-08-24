@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+import datetime
 from .forms import *
 from .models import *
 from django.urls import reverse_lazy
@@ -36,6 +37,8 @@ def nouveau_reseau(request):
                 reseau.proprietaire_id = request.user.id
             #reseau.proprietaire_id = 1 #Proprietaire.objects.filter(user = 1)
             
+            key = datetime.datetime.now()
+            reseau.network_key = "net"+key.strftime("%f%y%m%d%H%S")
             reseau.save()
             save = True
             return redirect('reseau_list')
@@ -52,7 +55,7 @@ def liste_reseau(request):
         
     return render(request, 'iotCloud/reseau_list.html', {'reseaux': reseaux, "nb": nb}) #locals())
 
-@login_required(redirect_field_name='connexion')
+@login_required(redirect_field_name='accounts/login')
 def mon_profil(request):
     user = User()
     if user.is_authenticated:
@@ -80,9 +83,12 @@ def contact(request):
 
 def conditions(request):
     return render(request, 'iotCloud/conditions.html')
+
 def a_propos(request):
     return render(request, 'iotCloud/a_propos.html')
+
 def aide(request):
     return render(request, 'iotCloud/aide.html')
+    
 def abonnement(request):
     return render(request, 'iotCloud/abonnement.html')

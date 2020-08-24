@@ -10,15 +10,15 @@ from iotCloud.models import (
     Donnee_appli,
 )
 
-class ReseauSerializer(serializers.HyperlinkedModelSerializer): 
+class ReseauSerializer(serializers.ModelSerializer): 
     class Meta: 
         model = Reseau 
-        fields = ('nom_reseau', 'date_creation', 'description_reseau')
+        fields = ('nom_reseau', 'network_key', 'date_creation', 'description_reseau')
 
 class PuitsSerializer(serializers.HyperlinkedModelSerializer): 
     class Meta: 
         model = Puits
-        fields = ('reseau', 'adresse')
+        fields = ('reseau', 'adresse', 'sink_key')
 
 class CapteurSerializer(serializers.HyperlinkedModelSerializer): 
     class Meta: 
