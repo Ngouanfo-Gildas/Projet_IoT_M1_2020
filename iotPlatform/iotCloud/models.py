@@ -103,7 +103,7 @@ class Donnee_ctrl(models.Model):
     heure = models.TimeField(auto_now_add=True)
 
     def __str__(self):
-        return "%s" % (str(self.taux_livraison))
+        return "%s" % (str(self.lq))
 
 # 9 ################################################################################
 

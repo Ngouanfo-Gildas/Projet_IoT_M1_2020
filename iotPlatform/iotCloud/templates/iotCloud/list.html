@@ -1,0 +1,18 @@
+{% extends "iotCloud/accueil.html" %}
+{% include 'iotCloud/network_list.html' %}
+
+    {% block page_title %}
+        Liste des capteurs:                 
+    {% endblock %}
+
+  {% block capteur %}
+    <ul>
+        {% for s in sensors %}
+        <li>
+            <a href="{% url 'select_sensor_data' s.id %}">{{ s.nom_capteur  }}</a>
+        </li>
+        {% empty %}
+          <h4>Ce réseau n'a aucun capteur pour le moment...</h4>
+        {% endfor %}
+    </ul>
+  {% endblock capteur %}

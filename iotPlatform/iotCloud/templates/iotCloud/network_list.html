@@ -1,26 +1,51 @@
- 
+{% load static %}
+
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <title>accueil</title>
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+
+   <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{% static 'iotCloud/accueil.css' %}">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+
+
   <p>
     <a href="{% url 'nouveau_reseau' %}" class="btn btn-primary">Nouveau réseau</a>
   </p>
   <table class="table table-bordered table-hover">
     <thead class="bg-info">
       <tr>
-        <th>Nom (nb de puits)</th>
+        <th>Nom</th>
         <th>Clé du réseau</th>
         <th>Date de création</th>
         <th>Description</th>
         <th>nb capteur</th>
-        <th>Modifier</th>
-        <th>Supprimer</th>
+        <!--th>Modifier</th>
+        <th>Supprimer</th-->
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tableau">
       {% for netw in reseaux %}
         <tr>
           <td>
             {{ netw.nom_reseau }} 
+            {% comment 'x1' %}
             ({{ nb }} <a href="#" class="tooltip-test" title="Ajouter un puits au réseau" data-toggle="modal" data-target="#exampleModalCenter__"> ++</a>)</td>
-            
+            {% endcomment %}
             <td>
             {{ netw.network_key }} 
             </td>
@@ -32,7 +57,8 @@
                     {{ netw.description_reseau }}
                 {% endif %}</a>
           </td>
-          <td><a href="#"> </i></a></td>
+          <td>{{ forloop.counter0 }} {{ netw.id }} {{ number_sensors }}</td>
+          {% comment 'x2' %}
           <td><!-- Button to edit -->
               <a class="bg-info p-1 text-dark" data-toggle="modal" data-target="#exampleModalCenter_" href="#">
                 modifier
@@ -48,6 +74,7 @@
               supprimer
             </button-->
           </td>
+          {% endcomment %}
         </tr>
       {% empty %}
         <tr class="table-active text-center">
@@ -56,19 +83,48 @@
       {% endfor %}
     </tbody>
   </table>
+  <script>
+    var table = document.getElementById("tableau").rows;
+    var longueur = table.length;
+    for(var i = 0; i<longueur; i++){
+      var colon_list = table[i].cells;
+	    var largeur = colon_list.length;
+	    for(var j=0; j<largeur; j++){
+        if(i % 2 == 0){
+          colon_list[j].style.backgroundColor = "#bdcbf5";
+        }
+        else {
+          colon_list[j].style.backgroundColor = "#829eeb";
+        }
+      }
+    }
+    function numeroLigne(ligne){
+      var numero = ligne.rowIndex;
+      ligne.cells[0].innerHTML = numero+1;
+    }
+  </script>
 
-  <div class="m-4">
+  <!--select name="network">
+       {% for network in reseaux %}
+               <option value="{{network.key}}" selected="selected">{{network.id}}: {{network.nom_reseau }}</option>
+       {% endfor %}
+  </select-->
+  <!--div class="m-4">
     <div class="dropdown">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
       choisir un réseau 
       </button>
       <div class="dropdown-menu">
-        {% for netw in reseaux %}
-          <a class="dropdown-item p-2" href="#">{{ netw.nom_reseau }}</a>
+        {% for net in reseaux %}
+          <a class="dropdown-item p-2" href="{% url 'sensor_list' net.id %}"> {{ net.nom_reseau }}</a>                   
         {% endfor %}
       </div>
     </div>
-  </div>
+  </div-->
+
+        {% for netw in reseaux %}
+          <a href="{% url 'sensor_list' netw.id %}"> {{ netw.nom_reseau }}</a>                   
+        {% endfor %}
 
 
   <!-- Supprimer un réseau -->
@@ -135,7 +191,7 @@
     </div>
   </div>
 
-  <!-- Modifier un réseau -->
+  <!-- Ajouter un puits -->
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter__" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

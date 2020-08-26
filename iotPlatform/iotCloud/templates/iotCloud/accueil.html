@@ -27,33 +27,33 @@
 		<ul>
         <li><img src="{% static 'iotCloud/logo.png' %}" alt="logo"></li>
 			<li class="menu">
-                <a href="accueil"> 
-                    <i class="fas fa-home"></i> Accueil
+                <a href="{% url 'accueil' %}"> 
+                    <!--i class="fas fa-home"></i--> Accueil
                 </a>
 			</li>
 			
 			<li class="menu">
                 <a href="{% url 'reseau_list' %}">
-                    <i class="fas fa-network-wired"></i> Mes réseaux
+                    <!--i class="fas fa-network-wired"></i--> Mes réseaux
                 </a>
 				<!--ul class="submenu">
 					<li><a href="#">exemples / exercices</a></li>
 				</ul-->
 			</li>
 			
-			<li class="menu">
+			<!--li class="menu">
                 <a href="mon_profil">
                     <i class="fas fa-id-card"></i> Profil </a>
-				<!--ul class="submenu">
+				<ul class="submenu">
 					<li><a href="#">cours complet html et css</a></li>
-				</ul-->
-			</li>
+				</ul>
+			</li-->
 			
-			<li class="menu">
+			<!--li class="menu">
                 <a href="#"><i class="fas fa-cog"></i>
                     Paramètres
                 </a>
-            </li>
+            </li-->
             <li class="menu-con">
                 {% if user.is_authenticated %}
                     <a href="#">
@@ -62,6 +62,7 @@
                         <ul class="submenu">
                             <li><a href="../accounts/logout">Se déconnecter</a></li>
                             <li><a href="../accounts/password_change">Changer le mot de passe</a></li>
+                            <li><a href="mon_profil">Mon Profil </a></li> 
                         </ul>
                 {% else %}
                     <a href="#">
@@ -80,12 +81,17 @@
             <div class="text-info">
                 <h4>
                     {% block page_title %}
+
                     {% endblock %}
                 </h4>
             </div>
             {% block content %}
-            passer à la vitesse supérieur avec l'Internet des Objets
+
             {% endblock %}
+
+            {% block capteur %}
+
+            {% endblock capteur %}
         </div>
     </div>
 

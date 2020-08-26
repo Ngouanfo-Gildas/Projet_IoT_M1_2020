@@ -9,15 +9,38 @@
 {% endblock %}
 
 {% block content %}
+
+  <form enctype="multipart/form-data" method="post" >
+      {% csrf_token %}
+      <!--div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputun4">Nom du réseau: </label>
+          <input type="text" name="nom_reseau" id="inputUsername" class="form-control" placeholder="nom" required>
+        </div>
+          <div class="form-group col-md-12">
+            <label for="inputEmail4">description du reseau:</label>
+            <textarea type="text" raw="7" name="description_reseau" id="inputEmail" class="form-control" placeholder="décrivez ce réseau en quelques lignes" required autofocus>
+            </textarea>
+          </div>
+        <div class="form-group col-md-12">
+          <label for="inputun4">adresse du puits: </label>
+          <input type="text" name="adresse" id="inputUsername" class="form-control" placeholder="adresse du puits de ce réseau" required>
+        </div>
+      </div>
+    <button type="submit" class="btn btn-success">Sauvegarder</button>
+    </form-->
+ 
   <form method="post" novalidate>
     {% csrf_token %}
     <div class="row">
-     
       <div class="col-12">
         {{ form.nom_reseau|as_crispy_field }}
       </div>
       <div class="col-12">
         {{ form.description_reseau|as_crispy_field }}
+      </div>
+      <div class="col-12">
+        {{ form_p.adresse|as_crispy_field }}
       </div>
     </div>
     <button type="submit" class="btn btn-success">Sauvegarder</button>

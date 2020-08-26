@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from .models import Proprietaire, Reseau
+from .models import Proprietaire, Reseau, Puits
 from django_countries.widgets import CountrySelectWidget
 
 from crispy_forms.helper import FormHelper
@@ -19,3 +19,16 @@ class ReseauForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Sauvegarder'))
+
+     
+class PuitsForm(ModelForm):
+    class Meta:
+        model = Puits
+        fields = ['adresse']
+        labels = {'adresse':('Adresse du puits')}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Ajouter'))

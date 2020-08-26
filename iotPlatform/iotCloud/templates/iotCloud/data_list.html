@@ -1,0 +1,55 @@
+
+{% extends "iotCloud/accueil.html" %}
+{% include 'iotCloud/network_list.html' %}
+
+    {% block page_title %}
+        Données:               
+    {% endblock %}
+
+    
+    <!--h5><u>Nom du capteur:</u> {{ s.nom_capteur }} </h5>
+    <h5><u>Type de donnée mesurée:</u> {{ s.type_data }} </h5-->
+  {% block capteur %}
+  <h3> Données Aplicatives </h3> 
+    <table class="table table-bordered table-hover">
+        <thead class="bg-info">
+            <tr>
+                <th>Date | Heure </th>
+                <th>Valeur mesurée</th>
+                <th>Unité</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data_app %}
+                <tr>
+                    <td>{{ data.date }} | {{ data.heure }} </td>
+                    <td>{{ data.valeur_traite }} </td>
+                    <td>{{ data.unity_data }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="table table-bordered table-hover">
+  <h3> Données de contôles </h3> 
+        <thead class="bg-info">
+            <tr>
+                <th>Date | Heure </th>
+                <th>Liste des voisins</th>
+                <th>LQ</th>
+                <th>RSSI</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data_ctrl %}
+                <tr>
+                    <td>{{ data.date }} | {{ data.heure }} </td>
+                    <td>{{ data.voisin }} </td>
+                    <td>{{ data.lq }} </td>
+                    <td>{{ data.rssi }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+  {% endblock capteur %}
